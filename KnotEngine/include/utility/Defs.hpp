@@ -4,16 +4,16 @@
 #include <inttypes.h>
 #include <limits>
 
-#defineKT_HAS_FLAG(field, flag) ((int(field) & int(flag)) == int(flag))
+#define KT_HAS_FLAG(field, flag) ((int(field) & int(flag)) == int(flag))
 
 #ifdef _MSC_VER
-#defineKT_NODISCARD _NODISCARD
-#defineKT_NORETURN __declspec(noreturn)
-#defineKT_ALWAYS_INLINE inline __forceinline
+#define KT_NODISCARD _NODISCARD
+#define KT_NORETURN __declspec(noreturn)
+#define KT_ALWAYS_INLINE inline __forceinline
 #elif defined(__GNUC__) || defined(__clang__)
-#defineKT_NODISCARD [[__nodiscard__]]
-#defineKT_NORETURN __attribute__ ((__noreturn__))
-#defineKT_ALWAYS_INLINE inline __attribute__((__always_inline__))
+#define KT_NODISCARD [[__nodiscard__]]
+#define KT_NORETURN __attribute__ ((__noreturn__))
+#define KT_ALWAYS_INLINE inline __attribute__((__always_inline__))
 #endif
 
 namespace kt
