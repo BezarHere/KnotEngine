@@ -56,6 +56,24 @@ namespace kt
       m_data[m_length] = char_type();
     }
 
+    template <size_t N>
+    constexpr BasicArrayString(const char_type(&_arr)[N])
+      : m_length{ std::min(max_length, N) } {
+      // filling the string with null chars
+      for (size_t i = 0; i < std::min(max_length, N); i++)
+      {
+        if (_arr[i] == char_type())
+        {
+          m_length = i;
+          break;
+        }
+
+        m_data[i] = _arr[i];
+      }
+
+      m_data[m_length] = char_type();
+    }
+
     constexpr BasicArrayString(const char_type *cstr)
       : BasicArrayString(cstr, traits_type::length(cstr)) {
     }
@@ -129,5 +147,6 @@ namespace kt
   template <size_t MaxLen>
   using ArrayString = BasicArrayString<MaxLen, char>;
 
-  static inline ArrayString<64> xx;
+  template <size_t MaxLen>
+  using WArrayString = BasicArrayString<MaxLen, wchar_t>;
 }
