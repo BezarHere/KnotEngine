@@ -4,7 +4,7 @@
 
 namespace kt
 {
-  template <size_t _MaxLen = 40, typename _T>
+  template <size_t _MaxLen, typename _T>
   class BasicArrayString
   {
   public:

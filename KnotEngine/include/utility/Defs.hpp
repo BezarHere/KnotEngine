@@ -18,6 +18,8 @@
 
 namespace kt
 {
+	static constexpr size_t npos = static_cast<size_t>(-1);
+
 	using std::string;
 
 	typedef string::value_type string_char;

@@ -14,17 +14,19 @@ namespace kt
 
     static constexpr bool is_square = (width == height);
 
-    typedef value_type columns_array[width];
-    typedef columns_array values_array[height];
+    typedef value_type row_type[width];
+    typedef value_type column_type[height];
+
+    typedef column_type values_array[width];
 
     template <size_t W2, size_t H2>
     using ResizedMatrix = TMatrix<T, W2, H2>;
 
-    inline columns_array &operator[](const size_t index) {
+    inline column_type &operator[](const size_t index) {
       return values[index];
     }
 
-    inline const columns_array &operator[](const size_t index) const {
+    inline const column_type &operator[](const size_t index) const {
       return values[index];
     }
 
@@ -62,6 +64,16 @@ namespace kt
 
     inline this_type &convert_transposed() noexcept {
       return *this = this->transposed();
+    }
+
+    inline void scale(const value_type scaler) {
+      for (size_t x = 0; x < width; x++)
+      {
+        for (size_t y = 0; y < height; y++)
+        {
+          values[x][y] *= scaler;
+        }
+      }
     }
 
     values_array values;
@@ -104,42 +116,20 @@ namespace kt
 
     return result;
   }
-  
-  template<typename T, size_t W, size_t H>
-  inline T TMatrix<T, W, H>::determinant() const {
-    static_assert(is_square, "determinant only for square matrices!");
-    value_type value = 0;
 
+  template<>
+  inline real_t TMatrix<real_t, 3, 3>::determinant() const {
+    return
+      (values[0][0] * values[1][1] * values[2][2])
+      + (values[1][0] * values[2][1] * values[0][2])
+      + (values[2][0] * values[0][1] * values[1][2])
+      - (values[2][0] * values[1][1] * values[0][2])
+      - (values[1][0] * values[0][1] * values[2][2])
+      - (values[0][0] * values[2][1] * values[1][2]);
+  }
 
-    for (size_t i = 0; i < width; i++)
-    {
-      value_type add_accumulator = 1;
-      value_type sub_accumulator = 1;
-
-      for (size_t j = 0; j < width; j++)
-      {
-        if (i + j >= width)
-        {
-          add_accumulator *= values[(i + j) - width][j];
-        }
-        else
-        {
-          add_accumulator *= values[i + j][j];
-        }
-
-        if (i < j)
-        {
-          sub_accumulator *= values[(i + width) - j][j];
-        }
-        else
-        {
-          sub_accumulator *= values[i - j][j];
-        }
-      }
-
-      value += add_accumulator - sub_accumulator;
-    }
-
-    return value;
+  template<>
+  inline real_t TMatrix<real_t, 2, 2>::determinant() const {
+    return values[0][0] * values[1][1] - values[1][0] * values[0][1];
   }
 }

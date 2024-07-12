@@ -5,11 +5,13 @@ namespace kt
 {
 	struct Transform2D
 	{
-		Matrix3 basis;
+		Matrix2 basis;
+		Vec2 position;
 	};
 
 	struct Transform3D
 	{
-		Matrix4 basis;
+		Matrix3 basis;
+		Vec2 position;
 	};
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include "utility/FieldVar.hpp"
-
 #include "utility/SpaceTraits.hpp"
+#include "utility/ArrayString.hpp"
 
 
 namespace kt
@@ -13,8 +13,11 @@ namespace kt
     Space3D,
   };
 
-  class Object
+  class Scene;
+
+  class alignas(16) Object
   {
+    friend Scene;
   public:
     enum _ObjFunctionalityFlags : uint8_t
     {
@@ -41,15 +44,26 @@ namespace kt
     typedef typename space_traits::direction_type direction_type;
     typedef typename space_traits::rotation_type rotation_type;
 
-    struct Data
+    static constexpr size_t max_name_length = 31;
+    typedef ArrayString<max_name_length> name_string_type;
+
+    struct State
     {
       transform_type transform;
-
-      int32_t render_priority = 0;
-      int32_t update_priority = 0;
-      int32_t physics_priority = 0;
-
       int32_t zindex = 0;
+    };
+
+    struct Data
+    {
+      name_string_type name;
+      name_string_type unique_name; // can be empty
+      uint64_t custom_flags;
+    };
+
+    struct NodeLink
+    {
+      size_t scene_index;
+      Object *ptr;
     };
 
     inline Object(ObjFnFlags fn_flags = eObjFnFlag_Updatable) : m_fn_flags{ fn_flags } {
@@ -78,11 +92,11 @@ namespace kt
     }
 
     inline const transform_type &get_transform() const {
-      return m_transform;
+      return m_local_state.transform;
     }
 
     inline void set_transform(const transform_type &value) {
-      m_transform = value;
+      m_local_state.transform = value;
       mark_transform_dirty();
     }
 
@@ -91,13 +105,16 @@ namespace kt
     }
 
   protected:
-    VarDict m_variables;
 
     inline void mark_transform_clean() {
       m_transform_dirty = false;
     }
 
-    transform_type m_transform = {};
+    State m_local_state = {};
+    Data m_data = {};
+    bool m_transform_dirty = true;
+
+    VarDict m_variables;
   private:
     inline Object &operator=(const Object &) = delete;
 
@@ -109,6 +126,10 @@ namespace kt
   private:
     ObjectSpaceType m_space_type;
     const _ObjFunctionalityFlags m_fn_flags = eObjFnFlag_Updatable;
-    bool m_transform_dirty = true;
+
+    State m_global_state = {};
+
+    NodeLink m_parent;
+    std::vector<NodeLink> m_children;
   };
 }
