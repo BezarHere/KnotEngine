@@ -30,7 +30,7 @@ namespace kt
 			}
 			else
 			{
-				fprintf(output, "ERR[%s]:", _GetErrorName(code));
+				fprintf(output, "ERR[%s]:", KT_GetErrorName(code));
 			}
 
 			va_list list;
@@ -60,7 +60,7 @@ namespace kt
 			}
 			else
 			{
-				fprintf(output, "WRN[%s]:", _GetErrorName(code));
+				fprintf(output, "WRN[%s]:", KT_GetErrorName(code));
 			}
 
 			va_list list;

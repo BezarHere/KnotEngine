@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Window.hpp"
+#include "GLCommon.hpp"
 #include <vector>
 
 using namespace kt;

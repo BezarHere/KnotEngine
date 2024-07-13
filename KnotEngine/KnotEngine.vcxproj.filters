@@ -18,7 +18,7 @@
     <ClInclude Include="src\pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\_Base.hpp">
+    <ClInclude Include="src\GLCommon.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Window.hpp">
@@ -123,6 +123,9 @@
     <ClInclude Include="include\res\Image.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\res\StorageBuffer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\KnotEngine.cpp">
@@ -147,6 +150,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GLCommon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StorageBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

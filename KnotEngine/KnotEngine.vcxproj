@@ -188,6 +188,7 @@
     <ClInclude Include="include\Renderer.hpp" />
     <ClInclude Include="include\res\Image.hpp" />
     <ClInclude Include="include\res\Resource.hpp" />
+    <ClInclude Include="include\res\StorageBuffer.hpp" />
     <ClInclude Include="include\res\Texture.hpp" />
     <ClInclude Include="include\Scene.hpp" />
     <ClInclude Include="include\utility\Cached.hpp" />
@@ -204,9 +205,12 @@
     <ClInclude Include="include\utility\Span.hpp" />
     <ClInclude Include="include\Window.hpp" />
     <ClInclude Include="src\pch.h" />
-    <ClInclude Include="src\_Base.hpp" />
+    <ClInclude Include="src\GLCommon.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\GLCommon.cpp" />
+    <ClCompile Include="src\StorageBuffer.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Image.cpp" />
     <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\FieldFile.cpp" />
