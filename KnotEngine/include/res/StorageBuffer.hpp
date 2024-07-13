@@ -44,6 +44,9 @@ namespace kt
     static constexpr StorageBufferType gl_type = Type;
 
     StorageBuffer(StorageBufferUsage usage, size_t size);
+    ~StorageBuffer();
+
+    void update(const void *data, size_t offset, size_t size);
 
   private:
     GLID m_id;
@@ -52,5 +55,6 @@ namespace kt
   };
 
   
-
+  typedef StorageBuffer<StorageBufferType::VertexBuffer> VertexBuffer;
+  typedef StorageBuffer<StorageBufferType::IndexBuffer> IndexBuffer;
 }

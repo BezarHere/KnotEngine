@@ -126,6 +126,9 @@
     <ClInclude Include="include\res\StorageBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\RenderCommand.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\KnotEngine.cpp">
@@ -159,6 +162,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\StorageBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

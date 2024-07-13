@@ -3,7 +3,15 @@
 
 #include <stdarg.h>
 
+static size_t g_refc = 0;
 errno_t OpenGL::Start() {
+  
+  if (g_refc != 0)
+  {
+    // already started
+    return EOK;
+  }
+  g_refc++;
 
   const int glfw_init_result = glfwInit();
   if (glfw_init_result == GLFW_FALSE)
@@ -17,6 +25,13 @@ errno_t OpenGL::Start() {
 }
 
 errno_t OpenGL::Stop() {
+  // already stopped or there is still some references
+  if (g_refc == 0 || g_refc > 1)
+  {
+    return EOK;
+  }
+  g_refc--;
+
   return errno_t();
 }
 

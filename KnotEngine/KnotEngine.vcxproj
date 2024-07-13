@@ -185,6 +185,7 @@
     <ClInclude Include="include\math\Vector.hpp" />
     <ClInclude Include="include\Object.hpp" />
     <ClInclude Include="include\objects\Camera.hpp" />
+    <ClInclude Include="include\RenderCommand.hpp" />
     <ClInclude Include="include\Renderer.hpp" />
     <ClInclude Include="include\res\Image.hpp" />
     <ClInclude Include="include\res\Resource.hpp" />
@@ -208,6 +209,8 @@
     <ClInclude Include="src\GLCommon.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\RenderCommand.cpp" />
+    <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\GLCommon.cpp" />
     <ClCompile Include="src\StorageBuffer.cpp" />
     <ClCompile Include="src\Texture.cpp" />

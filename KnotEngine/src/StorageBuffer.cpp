@@ -41,6 +41,16 @@ namespace kt
     : m_id{ CreateBuffer() }, m_usage{ usage }, m_size{ size } {
     //glGenBuffers()
   }
+
+  template<StorageBufferType Type>
+  StorageBuffer<Type>::~StorageBuffer() {
+    glDeleteBuffers(1, &m_id);
+  }
+  
+  template<StorageBufferType Type>
+  void StorageBuffer<Type>::update(const void *data, size_t offset, size_t size) {
+    glBufferSubData((int)Type, offset, size, data);
+  }
 }
 
 GLID CreateBuffer() {

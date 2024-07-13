@@ -2,6 +2,8 @@
 #include "Window.hpp"
 #include "Object.hpp"
 
+#include "Renderer.hpp"
+
 #include <array>
 #include <memory>
 #include <thread>

@@ -120,6 +120,8 @@ inline GLFWwindow *create_window(const kt::WindowAttributes &attributes) {
 	// currently, full screen unsupported
 	GLFWmonitor *monitor = attributes.mode == WindowMode::FullScreen ? nullptr : nullptr;
 
+	OpenGL::Start();
+
 	// todo: error handling
 	GLFWwindow *window = glfwCreateWindow(
 		attributes.size.x, attributes.size.y, attributes.title,

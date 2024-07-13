@@ -1,3 +1,4 @@
+#pragma once
 #include "math/Rect.hpp"
 #include <vector>
 
@@ -55,8 +56,10 @@ namespace kt
 		WindowEventData data;
 	};
 
+	class Renderer;
 	class Window
 	{
+		friend Renderer;
 	public:
 		struct CallbackServer;
 		typedef void *WindowHandle;
@@ -94,7 +97,7 @@ namespace kt
 
 	private:
 		WindowHandle m_handle;
-		WindowState m_state;
+		WindowState m_state = WindowState::Restored;
 
 		RectI m_rect;
 
