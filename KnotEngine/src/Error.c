@@ -1,14 +1,19 @@
 //#include "pch.h"
 #include "utility/Error.h"
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+
+#include <winerror.h>
 
 #define ERROR_ENTRY(err) case err: return #err
 #define ERROR_ENTRY_V(err, offset) case err: return &(#err)[offset]
 
-const char *_GetErrorName(const errno_t error_code) {
+const char *KT_GetErrorName(const errno_t error_code) {
 	enum { template_str_size = 20, hex_radix = 16 };
 	static char template_str[template_str_size] = {'0', 'x'};
 	switch (error_code)
 	{
+		ERROR_ENTRY_V(EOK, 1);
 		ERROR_ENTRY_V(EPERM, 1);
 		ERROR_ENTRY_V(ENOENT, 1);
 		ERROR_ENTRY_V(ESRCH, 1);
@@ -101,7 +106,7 @@ const char *_GetErrorName(const errno_t error_code) {
 		ERROR_ENTRY(E_FAIL);
 		ERROR_ENTRY(E_ACCESSDENIED);
 		ERROR_ENTRY(E_PENDING);
-		ERROR_ENTRY(E_NOT_SUFFICIENT_BUFFER);
+		//ERROR_ENTRY(E_NOT_SUFFICIENT_BUFFER);
 		
 		ERROR_ENTRY(CO_E_INIT_TLS);
 		ERROR_ENTRY(CO_E_INIT_SHARED_ALLOCATOR);
@@ -271,7 +276,7 @@ const char *_GetErrorName(const errno_t error_code) {
 		ERROR_ENTRY(WSA_QOS_EFILTERCOUNT);
 		ERROR_ENTRY(WSA_QOS_EOBJLENGTH);
 		ERROR_ENTRY(WSA_QOS_EFLOWCOUNT);
-		ERROR_ENTRY(WSA_QOS_EUNKNOWNPSOBJ);
+		//ERROR_ENTRY(WSA_QOS_EUNKNOWNPSOBJ);
 		// ERROR_ENTRY(WSA_QOS_EUNKOWNPSOBJ);
 		ERROR_ENTRY(WSA_QOS_EPOLICYOBJ);
 		ERROR_ENTRY(WSA_QOS_EFLOWDESC);
@@ -281,6 +286,32 @@ const char *_GetErrorName(const errno_t error_code) {
 		ERROR_ENTRY(WSA_QOS_ESHAPERATEOBJ);
 		ERROR_ENTRY(WSA_QOS_RESERVED_PETYPE);
 #endif
+
+#ifdef _GL_H
+		//ERROR_ENTRY(GL_NO_ERROR);
+		ERROR_ENTRY_V(GL_INVALID_ENUM, 3);
+		ERROR_ENTRY_V(GL_INVALID_VALUE, 3);
+		ERROR_ENTRY_V(GL_INVALID_OPERATION, 3);
+		ERROR_ENTRY_V(GL_INVALID_FRAMEBUFFER_OPERATION, 3);
+		ERROR_ENTRY_V(GL_OUT_OF_MEMORY, 3);
+		ERROR_ENTRY_V(GL_STACK_UNDERFLOW, 3);
+		ERROR_ENTRY_V(GL_STACK_OVERFLOW, 3);
+#endif // GL
+
+#ifdef GLFWAPI
+		//ERROR_ENTRY(GLFW_NO_ERROR);
+		ERROR_ENTRY_V(GLFW_NOT_INITIALIZED, 5);
+		ERROR_ENTRY_V(GLFW_NO_CURRENT_CONTEXT, 5);
+		ERROR_ENTRY_V(GLFW_INVALID_ENUM, 5);
+		ERROR_ENTRY_V(GLFW_INVALID_VALUE, 5);
+		ERROR_ENTRY_V(GLFW_OUT_OF_MEMORY, 5);
+		ERROR_ENTRY_V(GLFW_API_UNAVAILABLE, 5);
+		ERROR_ENTRY_V(GLFW_VERSION_UNAVAILABLE, 5);
+		ERROR_ENTRY_V(GLFW_PLATFORM_ERROR, 5);
+		ERROR_ENTRY_V(GLFW_FORMAT_UNAVAILABLE, 5);
+		ERROR_ENTRY_V(GLFW_NO_WINDOW_CONTEXT, 5);
+#endif // GLFWAPI
+
 	default:
 
 		for (size_t i = 0; i < (sizeof(error_code) * 2); i++)
