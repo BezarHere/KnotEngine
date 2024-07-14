@@ -17,6 +17,8 @@ namespace kt
     void clear();
     void flush();
 
+    void do_command(const RenderCommand &command);
+
     void draw_rect(const Rect &rect, const Color &color);
 
     Color clear_color = { 0.4F, 0.2F, 0.2F };

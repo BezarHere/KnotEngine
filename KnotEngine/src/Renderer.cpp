@@ -1,11 +1,13 @@
 #include "pch.h"
 #include "Renderer.hpp"
 
+typedef kt::RenderCommand::CmdType CommandType;
+
 namespace kt
 {
 
   Renderer::Renderer(Window &window)
-    : m_window{window} {
+    : m_window{ window } {
   }
 
   void Renderer::clear() {
@@ -21,8 +23,18 @@ namespace kt
     glfwSwapBuffers((GLFWwindow *)m_window.m_handle);
   }
 
+  void Renderer::do_command(const RenderCommand &command) {
+    switch (command.type)
+    {
+    case CommandType::Transform:
+
+    default:
+      break;
+    }
+  }
+
   void Renderer::draw_rect(const Rect &rect, const Color &color) {
-    
+
   }
 
 }

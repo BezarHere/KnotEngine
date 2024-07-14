@@ -189,9 +189,14 @@
     <ClInclude Include="include\Renderer.hpp" />
     <ClInclude Include="include\res\Image.hpp" />
     <ClInclude Include="include\res\Resource.hpp" />
+    <ClInclude Include="include\res\Shader.hpp" />
+    <ClInclude Include="include\res\ShaderProgram.hpp" />
     <ClInclude Include="include\res\StorageBuffer.hpp" />
     <ClInclude Include="include\res\Texture.hpp" />
     <ClInclude Include="include\Scene.hpp" />
+    <ClInclude Include="include\utility\Bitfield.hpp" />
+    <ClInclude Include="include\utility\Blob.hpp" />
+    <ClInclude Include="include\utility\Buffer.hpp" />
     <ClInclude Include="include\utility\Cached.hpp" />
     <ClInclude Include="include\utility\ArrayString.hpp" />
     <ClInclude Include="include\utility\ChunkAllocator.hpp" />
@@ -204,11 +209,14 @@
     <ClInclude Include="include\utility\Log.hpp" />
     <ClInclude Include="include\utility\SpaceTraits.hpp" />
     <ClInclude Include="include\utility\Span.hpp" />
+    <ClInclude Include="include\utility\StringCursor.hpp" />
     <ClInclude Include="include\Window.hpp" />
     <ClInclude Include="src\pch.h" />
     <ClInclude Include="src\GLCommon.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ShaderProgram.cpp" />
+    <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\RenderCommand.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\GLCommon.cpp" />

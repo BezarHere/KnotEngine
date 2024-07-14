@@ -2,6 +2,7 @@
 #include "utility/FieldVar.hpp"
 #include "utility/SpaceTraits.hpp"
 #include "utility/ArrayString.hpp"
+#include "RenderCommand.hpp"
 
 
 namespace kt
@@ -115,6 +116,7 @@ namespace kt
     bool m_transform_dirty = true;
 
     VarDict m_variables;
+    std::vector<RenderCommand> m_render_commands;
   private:
     inline Object &operator=(const Object &) = delete;
 
@@ -124,12 +126,12 @@ namespace kt
     // static inline void operator delete[](void *) = delete;
 
   private:
-    ObjectSpaceType m_space_type;
+    ObjectSpaceType m_space_type = ObjectSpaceType::None;
     const _ObjFunctionalityFlags m_fn_flags = eObjFnFlag_Updatable;
 
     State m_global_state = {};
 
-    NodeLink m_parent;
+    NodeLink m_parent = {};
     std::vector<NodeLink> m_children;
   };
 }
