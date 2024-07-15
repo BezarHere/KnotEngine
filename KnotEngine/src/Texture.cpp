@@ -45,7 +45,7 @@ namespace kt
 {
 
   Texture::Texture(TextureFormat format, const Image &img)
-    : m_id{ _CreateTexture() } {
+    : GraphicsResource{ _CreateTexture() } {
     SetupTexture(m_id);
     LoadTextureData(m_id, format, img);
   }

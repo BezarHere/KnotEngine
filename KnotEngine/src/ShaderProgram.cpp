@@ -10,7 +10,7 @@ namespace kt
 {
 
   ShaderProgram::ShaderProgram(const Blob<const Shader *> &shaders)
-    : m_id{ CreateShaderProgram(shaders) } {
+    : GraphicsResource(CreateShaderProgram(shaders)) {
   }
 
 }

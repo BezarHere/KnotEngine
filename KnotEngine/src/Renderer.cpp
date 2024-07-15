@@ -9,7 +9,7 @@ typedef kt::RenderCommand::CmdType CommandType;
 struct Debug
 {
   std::unique_ptr<kt::ShaderProgram> program;
-  kt::SPInputInterface input = { std::_Noinit };
+  kt::VertexInputDesc input = { std::_Noinit };
   kt::VertexBuffer vbuf;
   bool init = false;
 } g_Debug;
@@ -47,15 +47,15 @@ namespace kt
       g_Debug.vbuf = VertexBuffer(StorageBufferUsage::DynamicDraw, sizeof(BasicVertex) * 6);
 
       g_Debug.input = {};
-      auto &inputs = g_Debug.input.modifiable_inputs();
+      auto &inputs = g_Debug.input.get_modifiable_attributes();
       inputs.clear();
       inputs.resize(2);
 
-      inputs[0].type = SPInputType::Float;
-      inputs[0].size = SPInputSize::Vec2;
+      inputs[0].type = VertexDataType::Float;
+      inputs[0].size = VertexDataSize::Vec2;
 
-      inputs[1].type = SPInputType::Float;
-      inputs[1].size = SPInputSize::Vec4;
+      inputs[1].type = VertexDataType::Float;
+      inputs[1].size = VertexDataSize::Vec4;
 
       //g_Debug.input._update();
 
@@ -107,6 +107,7 @@ namespace kt
         g_Debug.input._update();
 
         glUseProgram(g_Debug.program->get_id());
+
         glBindVertexArray(g_Debug.input.m_id);
 
         glDrawArrays(GL_TRIANGLES, 0, 6);

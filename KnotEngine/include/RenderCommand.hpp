@@ -3,17 +3,11 @@
 #include "math/Transform.hpp"
 
 #include "res/Texture.hpp"
-#include "res/StorageBuffer.hpp"
+
+#include "res/Mesh.hpp"
 
 namespace kt
 {
-  enum class PrimitiveType
-  {
-    Point,
-    Triangles,
-    TriangleFan,
-    TriangleStrip,
-  };
 
   struct RenderCommand
   {
@@ -27,6 +21,8 @@ namespace kt
       Primitive3D,
       Polygon2D,
       Polygon3D,
+
+      Mesh
     };
 
     struct BaseData
@@ -108,6 +104,11 @@ namespace kt
       Transform3D transform;
     };
 
+    struct MeshData : public BaseData
+    {
+      Mesh *mesh;
+    };
+
     RenderCommand(CmdType _type = CmdType::Transform);
 
     RenderCommand(RenderCommand &&move) noexcept;
@@ -141,6 +142,8 @@ namespace kt
       BasePolygon base_polygon;
       Polygon2D polygon_2d;
       Polygon3D polygon_3d;
+
+      MeshData mesh;
     };
 
     CmdType type;
@@ -167,6 +170,8 @@ namespace kt
       return proc(this->polygon_2d);
     case CmdType::Polygon3D:
       return proc(this->polygon_3d);
+    case CmdType::Mesh:
+      return proc(this->mesh);
     default:
       throw std::bad_variant_access();
       //return proc(this->transform);

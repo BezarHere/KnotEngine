@@ -5,7 +5,7 @@
 namespace kt
 {
 
-  class ShaderProgram
+  class ShaderProgram : public GraphicsResource
   {
   public:
     struct UniformInfo
@@ -16,11 +16,7 @@ namespace kt
 
     ShaderProgram(const Blob<const Shader *> &shaders);
 
-    inline GLID get_id() const { return m_id; }
-
     static void _attach_shader(GLID id, const Shader &shader);
-  private:
-    GLID m_id;
   };
 
 }

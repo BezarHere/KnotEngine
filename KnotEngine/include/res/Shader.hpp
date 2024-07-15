@@ -13,7 +13,7 @@ namespace kt
   };
 
   class ShaderProgram;
-  class Shader : public Resource
+  class Shader : public GraphicsResource
   {
     friend ShaderProgram;
   public:
@@ -27,13 +27,11 @@ namespace kt
 
     ~Shader() noexcept;
 
-    inline bool is_valid() const noexcept { return m_id != 0; }
     inline ShaderType get_type() const noexcept { return m_type; }
 
     std::string get_source() const;
 
   private:
-    GLID m_id;
     ShaderType m_type;
   };
 }

@@ -9,11 +9,11 @@ namespace kt
 {
 
   Shader::Shader(ShaderType type, const char *source)
-    : m_id{ CreateShader(type, source) }, m_type{ type } {
+    : GraphicsResource(CreateShader(type, source)), m_type{ type } {
 
   }
 
-  Shader::Shader(const Shader &copy) : m_id{}, m_type{ copy.m_type } {
+  Shader::Shader(const Shader &copy) : GraphicsResource(), m_type{ copy.m_type } {
     if (!copy.is_valid())
     {
       return;
@@ -23,7 +23,7 @@ namespace kt
     m_id = CreateShader(m_type, source.c_str());
   }
 
-  Shader::Shader(Shader &&move) noexcept : m_id{ move.m_id }, m_type{ move.m_type } {
+  Shader::Shader(Shader &&move) noexcept : GraphicsResource(move.m_id), m_type{ move.m_type } {
     move.m_id = NULL;
   }
 

@@ -147,7 +147,7 @@
     <ClInclude Include="include\utility\Bitfield.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\res\SPInputInterface.hpp">
+    <ClInclude Include="include\res\VertexInputDesc.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\gcc\bgnu\src\misc\ArrayList.hpp">
@@ -157,6 +157,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\utility\NakedArray.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\res\Mesh.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utility\XML\XML.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\res\MeshIndexBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -206,11 +215,17 @@
     <ClCompile Include="src\ShaderProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\SPInputInterface.cpp">
+    <ClCompile Include="src\VertexInputDesc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MeshIndexBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="include\utility\XML\test.xml" />
   </ItemGroup>
 </Project>

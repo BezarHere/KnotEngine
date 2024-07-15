@@ -189,10 +189,12 @@
     <ClInclude Include="include\RenderCommand.hpp" />
     <ClInclude Include="include\Renderer.hpp" />
     <ClInclude Include="include\res\Image.hpp" />
+    <ClInclude Include="include\res\MeshIndexBuffer.hpp" />
+    <ClInclude Include="include\res\Mesh.hpp" />
     <ClInclude Include="include\res\Resource.hpp" />
     <ClInclude Include="include\res\Shader.hpp" />
     <ClInclude Include="include\res\ShaderProgram.hpp" />
-    <ClInclude Include="include\res\SPInputInterface.hpp" />
+    <ClInclude Include="include\res\VertexInputDesc.hpp" />
     <ClInclude Include="include\res\StorageBuffer.hpp" />
     <ClInclude Include="include\res\Texture.hpp" />
     <ClInclude Include="include\Scene.hpp" />
@@ -214,12 +216,14 @@
     <ClInclude Include="include\utility\SpaceTraits.hpp" />
     <ClInclude Include="include\utility\Span.hpp" />
     <ClInclude Include="include\utility\StringCursor.hpp" />
+    <ClInclude Include="include\utility\XML\XML.h" />
     <ClInclude Include="include\Window.hpp" />
     <ClInclude Include="src\pch.h" />
     <ClInclude Include="src\GLCommon.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\SPInputInterface.cpp" />
+    <ClCompile Include="src\MeshIndexBuffer.cpp" />
+    <ClCompile Include="src\VertexInputDesc.cpp" />
     <ClCompile Include="src\ShaderProgram.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\RenderCommand.cpp" />
@@ -246,6 +250,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="include\utility\XML\test.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

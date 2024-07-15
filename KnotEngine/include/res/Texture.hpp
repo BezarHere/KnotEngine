@@ -19,7 +19,7 @@ namespace kt
     RGBA32F,
   };
 
-  class Texture : public Resource
+  class Texture : public GraphicsResource
   {
   public:
     struct LocalData
@@ -29,8 +29,6 @@ namespace kt
 
     Texture(TextureFormat format, const Image &img);
 
-  private:
-    GLID m_id;
   };
 
 }

@@ -2,7 +2,7 @@
 #include "Window.hpp"
 #include "res/StorageBuffer.hpp"
 #include "res/ShaderProgram.hpp"
-#include "res/SPInputInterface.hpp"
+#include "res/VertexInputDesc.hpp"
 
 #include "math/Transform.hpp"
 #include "math/Color.hpp"

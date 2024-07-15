@@ -1,5 +1,6 @@
 #pragma once
 #include "Resource.hpp"
+#include "utility/Buffer.hpp"
 
 namespace kt
 {
@@ -38,7 +39,7 @@ namespace kt
   };
 
   template <StorageBufferType Type>
-  class StorageBuffer : public Resource
+  class StorageBuffer : public GraphicsResource
   {
   public:
     static constexpr uint32_t gl_type = uint32_t(Type);
@@ -51,16 +52,23 @@ namespace kt
     StorageBuffer(StorageBuffer &&move) noexcept;
     StorageBuffer &operator=(StorageBuffer &&move) noexcept;
 
+    inline void mark_dirty() { m_dirty = true; }
+    inline bool is_dirty() const { return m_dirty; }
 
-    void update(const void *data, size_t offset, size_t size);
+    inline size_t size() const { return m_size; }
 
-    inline bool is_valid() const { return m_id != NULL; }
-    inline GLID get_id() const { return m_id; }
+    void update(const void *data, size_t size, size_t offset);
 
+    void validate();
+
+    // uploads the data to opengl's buffer, not be called by the user!
+    void __gl_upload();
   private:
-    GLID m_id;
     StorageBufferUsage m_usage;
     size_t m_size;
+
+    bool m_dirty;
+    Buffer m_buf;
   };
 
 

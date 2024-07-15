@@ -37,12 +37,13 @@ static inline constexpr GLuint BufferUsage2Native(kt::StorageBufferUsage usage);
 namespace kt
 {
   template<StorageBufferType Type>
-  StorageBuffer<Type>::StorageBuffer() : m_id{}, m_usage{}, m_size{} {
+  StorageBuffer<Type>::StorageBuffer()
+    : GraphicsResource{}, m_usage{}, m_size{}, m_dirty{ true }, m_buf{} {
   }
 
   template<StorageBufferType Type>
   StorageBuffer<Type>::StorageBuffer(StorageBufferUsage usage, size_t size)
-    : m_id{ CreateBuffer() }, m_usage{ usage }, m_size{ size } {
+    : GraphicsResource{ CreateBuffer() }, m_usage{ usage }, m_size{ size }, m_dirty{ true }, m_buf{ size } {
     SetupBuffer<Type>(m_id, m_usage, m_size);
   }
 
@@ -53,7 +54,8 @@ namespace kt
 
   template<StorageBufferType Type>
   StorageBuffer<Type>::StorageBuffer(StorageBuffer &&move) noexcept
-    : m_id{ move.m_id }, m_usage{ move.m_usage }, m_size{ move.m_size } {
+    : GraphicsResource{ move.m_id }, m_usage{ move.m_usage }, m_size{ move.m_size },
+    m_dirty{ true }, m_buf{ move.m_buf } {
     move.m_id = NULL;
   }
 
@@ -65,12 +67,15 @@ namespace kt
     this->m_usage = move.m_usage;
     this->m_size = move.m_size;
 
+    this->m_dirty = true;
+    this->m_buf = move.m_buf;
+
     move.m_id = NULL;
     return *this;
   }
 
   template<StorageBufferType Type>
-  void StorageBuffer<Type>::update(const void *data, size_t offset, size_t size) {
+  void StorageBuffer<Type>::update(const void *data, size_t size, size_t offset) {
     if (!is_valid())
     {
       return;
@@ -82,12 +87,32 @@ namespace kt
       return;
     }
 
+    m_dirty = true;
+    m_buf.paste(data, size, offset);
+  }
+
+  template<StorageBufferType Type>
+  void StorageBuffer<Type>::validate() {
+    if (m_buf.size() != m_size)
+    {
+      Buffer new_buffer{ m_size };
+
+      new_buffer.paste(m_buf.get(), std::min(m_buf.size(), m_size));
+
+      m_buf = new_buffer;
+    
+      m_dirty = true;
+    }
+  }
+
+  template<StorageBufferType Type>
+  void StorageBuffer<Type>::__gl_upload() {
     glBindBuffer((int)Type, m_id);
 
-    glBufferSubData((int)Type, offset, size, data);
-    CHECK_OPENGL_V("glBufferSubData(%X, %llu, %llu, %p)", (int)Type, offset, size, data);
+    glBufferSubData((int)Type, 0, m_size, m_buf.get());
 
     glBindBuffer((int)Type, 0);
+    m_dirty = false;
   }
 }
 
