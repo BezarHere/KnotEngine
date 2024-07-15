@@ -8,7 +8,7 @@ int main() {
 
   while (!window.closed())
   {
-    renderer.clear();
+    renderer.start();
     renderer.flush();
     window.poll();
     std::this_thread::sleep_for(std::chrono::milliseconds(100));

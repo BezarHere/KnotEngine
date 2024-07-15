@@ -27,7 +27,7 @@ struct Blob final
 	inline constexpr Blob(value_type(&memory)[N]) noexcept : size{N}, data{memory} {}
 
 	// blob does not own the memory, so we can directly use it for container types
-	template <class Cnt, std::enable_if_t<!std::is_void_v<Cnt::size>>>
+	template <class Cnt>
 	inline constexpr Blob(const Cnt &container) noexcept
 		: size{container.size()}, data{container.data()} {
 	}

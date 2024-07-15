@@ -41,12 +41,21 @@ namespace kt
   class StorageBuffer : public Resource
   {
   public:
-    static constexpr StorageBufferType gl_type = Type;
+    static constexpr uint32_t gl_type = uint32_t(Type);
+
+    StorageBuffer();
 
     StorageBuffer(StorageBufferUsage usage, size_t size);
     ~StorageBuffer();
 
+    StorageBuffer(StorageBuffer &&move) noexcept;
+    StorageBuffer &operator=(StorageBuffer &&move) noexcept;
+
+
     void update(const void *data, size_t offset, size_t size);
+
+    inline bool is_valid() const { return m_id != NULL; }
+    inline GLID get_id() const { return m_id; }
 
   private:
     GLID m_id;
@@ -54,7 +63,7 @@ namespace kt
     size_t m_size;
   };
 
-  
+
   typedef StorageBuffer<StorageBufferType::VertexBuffer> VertexBuffer;
   typedef StorageBuffer<StorageBufferType::IndexBuffer> IndexBuffer;
 }

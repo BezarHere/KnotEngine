@@ -169,6 +169,7 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\gcc\bgnu\src\misc\ArrayList.hpp" />
     <ClInclude Include="glew\include\GL\eglew.h" />
     <ClInclude Include="glew\include\GL\glew.h" />
     <ClInclude Include="glew\include\GL\glxew.h" />
@@ -191,9 +192,11 @@
     <ClInclude Include="include\res\Resource.hpp" />
     <ClInclude Include="include\res\Shader.hpp" />
     <ClInclude Include="include\res\ShaderProgram.hpp" />
+    <ClInclude Include="include\res\SPInputInterface.hpp" />
     <ClInclude Include="include\res\StorageBuffer.hpp" />
     <ClInclude Include="include\res\Texture.hpp" />
     <ClInclude Include="include\Scene.hpp" />
+    <ClInclude Include="include\utility\ArrayList.hpp" />
     <ClInclude Include="include\utility\Bitfield.hpp" />
     <ClInclude Include="include\utility\Blob.hpp" />
     <ClInclude Include="include\utility\Buffer.hpp" />
@@ -207,6 +210,7 @@
     <ClInclude Include="include\utility\Format.hpp" />
     <ClInclude Include="include\utility\Indirection.hpp" />
     <ClInclude Include="include\utility\Log.hpp" />
+    <ClInclude Include="include\utility\NakedArray.hpp" />
     <ClInclude Include="include\utility\SpaceTraits.hpp" />
     <ClInclude Include="include\utility\Span.hpp" />
     <ClInclude Include="include\utility\StringCursor.hpp" />
@@ -215,6 +219,7 @@
     <ClInclude Include="src\GLCommon.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\SPInputInterface.cpp" />
     <ClCompile Include="src\ShaderProgram.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\RenderCommand.cpp" />
@@ -238,6 +243,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

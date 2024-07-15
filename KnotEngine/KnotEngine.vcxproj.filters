@@ -147,6 +147,18 @@
     <ClInclude Include="include\utility\Bitfield.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\res\SPInputInterface.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\gcc\bgnu\src\misc\ArrayList.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utility\ArrayList.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utility\NakedArray.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\KnotEngine.cpp">
@@ -194,5 +206,11 @@
     <ClCompile Include="src\ShaderProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\SPInputInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

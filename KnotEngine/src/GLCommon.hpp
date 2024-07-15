@@ -19,7 +19,14 @@ public:
   static constexpr size_t LogBufferSz = 512;
   typedef char LogBuffer[LogBufferSz];
 
-  static errno_t Start();
+  static constexpr size_t GLVersionMajor = 4;
+  static constexpr size_t GLVersionMinor = 1;
+
+  static errno_t InitGLFW();
+
+  // requires an active context
+  static errno_t InitGLEW();
+  static errno_t SetupWindowHints();
   static errno_t Stop();
 
   static errno_t _Impl_CheckGL(const char *msg, ...);

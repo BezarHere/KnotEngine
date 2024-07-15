@@ -40,7 +40,7 @@ namespace kt
 
 			if (s_UseColor)
 			{
-				fputs("\033[0m", output);
+				fputs("\n\033[0m", output);
 			}
 
 			return code;
@@ -70,7 +70,7 @@ namespace kt
 
 			if (s_UseColor)
 			{
-				fputs("\033[0m", output);
+				fputs("\n\033[0m", output);
 			}
 
 			return code;
