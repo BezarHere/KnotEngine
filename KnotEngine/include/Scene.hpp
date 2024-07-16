@@ -20,6 +20,9 @@ namespace kt
     void rebuild();
 
   private:
+    void _put_roots(std::vector<size_t> &out_roots) const;
+
+  private:
     std::vector<size_t> m_roots;
     std::vector<SPObject> m_objects;
 

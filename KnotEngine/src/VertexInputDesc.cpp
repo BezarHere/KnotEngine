@@ -68,7 +68,12 @@ namespace kt
     return m_attributes;
   }
 
-  void VertexInputDesc::_update() {
+  void VertexInputDesc::__gl_update(VertexBuffer *vbuf) {
+    if (vbuf)
+    {
+      glBindBuffer(vbuf->gl_type, vbuf->get_id());
+    }
+
     glBindVertexArray(m_id);
 
     const uint32_t inputs_count = uint32_t(m_attributes.size());
@@ -104,6 +109,11 @@ namespace kt
     }
 
     glBindVertexArray(m_id);
+    if (vbuf)
+    {
+      glBindBuffer(vbuf->gl_type, NULL);
+    }
+
     m_dirty = false;
   }
 

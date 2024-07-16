@@ -65,14 +65,14 @@ namespace kt
     //glViewport(0, 0, 64, 64);
 
 
-    RenderCommand command{ CommandType::Rect };
-    command.rect.rect = { -0.2F, 0.4F, 0.8F, -0.9F };
-    command.rect.tint = { 1.F, 1.F, 0.5F };
-    do_command(command);
+    //RenderCommand command{ CommandType::Rect };
+    //command.rect.rect = { -0.2F, 0.4F, 0.8F, -0.9F };
+    //command.rect.tint = { 1.F, 1.F, 0.5F };
+    //do_command(command);
 
-    command.rect.rect = { 0.2F, 0.1F, 0.9F, 0.4F };
-    command.rect.tint = { 1.F, 0.5F, 1.F };
-    do_command(command);
+    //command.rect.rect = { 0.2F, 0.1F, 0.9F, 0.4F };
+    //command.rect.tint = { 1.F, 0.5F, 1.F };
+    //do_command(command);
   }
 
   void Renderer::flush() {
@@ -99,12 +99,13 @@ namespace kt
           { { rect.position.x, rect.size.y + rect.position.y}, command.rect.tint }
         };
         g_Debug.vbuf.update(
-          vertices, 0, sizeof(vertices)
+          vertices, sizeof(vertices)
         );
+        g_Debug.vbuf.__gl_upload();
 
         glBindBuffer(g_Debug.vbuf.gl_type, g_Debug.vbuf.get_id());
 
-        g_Debug.input._update();
+        g_Debug.input.__gl_update();
 
         glUseProgram(g_Debug.program->get_id());
 
@@ -115,7 +116,7 @@ namespace kt
         glBindVertexArray(NULL);
         glBindBuffer(g_Debug.vbuf.gl_type, 0);
       }
-
+      break;
     default:
       break;
     }

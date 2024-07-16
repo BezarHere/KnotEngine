@@ -2,6 +2,7 @@
 #include "Resource.hpp"
 #include "utility/Blob.hpp"
 #include "utility/ArrayList.hpp"
+#include "res/StorageBuffer.hpp"
 
 namespace kt
 {
@@ -73,8 +74,7 @@ namespace kt
     // will mark this as dirty
     AttributeList &get_modifiable_attributes();
 
-  private:
-    void _update();
+    void __gl_update(VertexBuffer *vbuf = nullptr);
   private:
     bool m_dirty = true;
     AttributeList m_attributes;

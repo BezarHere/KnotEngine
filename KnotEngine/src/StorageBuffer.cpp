@@ -53,6 +53,25 @@ namespace kt
   }
 
   template<StorageBufferType Type>
+  StorageBuffer<Type>::StorageBuffer(const StorageBuffer &copy)
+    : GraphicsResource(CreateBuffer()), m_usage{ copy.m_usage }, m_size{ copy.m_size }, m_dirty{ true }, m_buf{ copy.m_buf } {
+    SetupBuffer<Type>(m_id, m_usage, m_size);
+  }
+
+  template<StorageBufferType Type>
+  StorageBuffer<Type> &StorageBuffer<Type>::operator=(const StorageBuffer &copy) {
+    if (std::addressof(copy) == this)
+    {
+      return *this;
+    }
+
+    this->~StorageBuffer();
+    new (this) StorageBuffer<Type>(copy);
+
+    return *this;
+  }
+
+  template<StorageBufferType Type>
   StorageBuffer<Type>::StorageBuffer(StorageBuffer &&move) noexcept
     : GraphicsResource{ move.m_id }, m_usage{ move.m_usage }, m_size{ move.m_size },
     m_dirty{ true }, m_buf{ move.m_buf } {
@@ -100,7 +119,7 @@ namespace kt
       new_buffer.paste(m_buf.get(), std::min(m_buf.size(), m_size));
 
       m_buf = new_buffer;
-    
+
       m_dirty = true;
     }
   }

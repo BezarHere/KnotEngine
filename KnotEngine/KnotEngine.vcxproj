@@ -222,6 +222,7 @@
     <ClInclude Include="src\GLCommon.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Mesh.cpp" />
     <ClCompile Include="src\MeshIndexBuffer.cpp" />
     <ClCompile Include="src\VertexInputDesc.cpp" />
     <ClCompile Include="src\ShaderProgram.cpp" />

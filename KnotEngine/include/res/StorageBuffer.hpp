@@ -49,6 +49,9 @@ namespace kt
     StorageBuffer(StorageBufferUsage usage, size_t size);
     ~StorageBuffer();
 
+    StorageBuffer(const StorageBuffer &copy);
+    StorageBuffer &operator=(const StorageBuffer &copy);
+
     StorageBuffer(StorageBuffer &&move) noexcept;
     StorageBuffer &operator=(StorageBuffer &&move) noexcept;
 
@@ -57,7 +60,7 @@ namespace kt
 
     inline size_t size() const { return m_size; }
 
-    void update(const void *data, size_t size, size_t offset);
+    void update(const void *data, size_t size, size_t offset = 0);
 
     void validate();
 

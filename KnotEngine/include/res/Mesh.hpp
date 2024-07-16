@@ -17,11 +17,14 @@ namespace kt
   {
   public:
 
+
+    void set_vertices(VertexBuffer &&buffer);
+    void set_vertices(const VertexBuffer &buffer);
+
+    PrimitiveType primitive;
+    MeshIndexBuffer indicies;
   private:
-    bool m_dirty;
-    PrimitiveType m_primitive;
     VertexBuffer m_vertices;
-    MeshIndexBuffer m_indicies;
     VertexInputDesc m_input;
   };
 
